@@ -77,6 +77,7 @@ const parser = (variableName) => {
 
 Object.entries(obj.token).map((variableName) => {
   const fileName = variableName[0] + '.css';
+  fs.openSync(fileName, 'w');
   fs.unlinkSync(fileName);
   var stream = fs.createWriteStream(fileName);
   stream.once('open', function (fd) {
