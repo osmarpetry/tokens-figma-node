@@ -1,0 +1,12 @@
+{
+  "name": "design-tokens-figma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  }
+}
