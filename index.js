@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-const fs = require('fs').promises;
+const fs = require('fs');
+const promisify = require('util').promisify;
 
 async function getStylesArtboard(figmaApiKey, figmaId) {
   const result = await fetch('https://api.figma.com/v1/files/' + figmaId, {
@@ -27,8 +28,6 @@ async function getStylesArtboard(figmaApiKey, figmaId) {
   Object.assign(baseTokeensJSON.token.spacers, getSpacers(stylesArtboard));
   Object.assign(baseTokeensJSON.token.colors, getPalette(stylesArtboard));
   Object.assign(baseTokeensJSON.token.fonts, getFontStyles(stylesArtboard));
-
-  console.log({ baseTokeensJSON });
 
   return baseTokeensJSON;
 }
@@ -203,13 +202,22 @@ function getFontStyles(stylesArtboard) {
   return fontStyles;
 }
 
+const writeFilePromise = promisify(fs.writeFile);
+
 (async () => {
-  await fs.writeFile(
-    'tokens.json',
-    getStylesArtboard(
-      '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
-      'JNIu97dR9CPt6kTg3grNFc7n'
-    ),
-    'utf-8'
-  );
-})()
+  await getStylesArtboard(
+    '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
+    'JNIu97dR9CPt6kTg3grNFc7n'
+  ).then((val) => {
+    const b = JSON.stringify(val, null, 2)
+
+    fs.writeFile('tokens.json', b, 'utf-8', function (err) {
+      if (err) {
+        console.log('An error occured while writing JSON Object to File.');
+        return console.log(err);
+      }
+
+      console.log('JSON file has been saved.');
+    });
+  });
+})();
