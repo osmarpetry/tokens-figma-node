@@ -209,9 +209,9 @@ const writeFilePromise = promisify(fs.writeFile);
     '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
     'JNIu97dR9CPt6kTg3grNFc7n'
   ).then((val) => {
-    const b = JSON.stringify(val, null, 2)
+    const jsonStringPrettier = JSON.stringify(val, null, 2)
 
-    fs.writeFile('tokens.json', b, 'utf-8', function (err) {
+    fs.writeFile('tokens.json', jsonStringPrettier, 'utf-8', function (err) {
       if (err) {
         console.log('An error occured while writing JSON Object to File.');
         return console.log(err);
