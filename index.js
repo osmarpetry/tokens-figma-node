@@ -1,6 +1,10 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
-const promisify = require('util').promisify;
+const jsonToCssVariables = require('json-to-css-variables');
+const Css = require('json-to-css')
+
+var sass = require('node-sass');
+var jsonImporter = require('node-sass-json-importer');
 
 async function getStylesArtboard(figmaApiKey, figmaId) {
   const result = await fetch('https://api.figma.com/v1/files/' + figmaId, {
@@ -202,14 +206,29 @@ function getFontStyles(stylesArtboard) {
   return fontStyles;
 }
 
-const writeFilePromise = promisify(fs.writeFile);
+function delicia(jsonLiso) {
+  const css = Css.of(jsonLiso)
+  console.log(css)
+  return css;
+}
 
 (async () => {
   await getStylesArtboard(
     '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
     'JNIu97dR9CPt6kTg3grNFc7n'
   ).then((val) => {
-    const jsonStringPrettier = JSON.stringify(val, null, 2)
+    const jsonStringPrettier = JSON.stringify(val, null, 2);
+
+    const cssString = delicia(jsonStringPrettier);
+
+    fs.writeFile('tokens.css', cssString, 'utf-8', function (err) {
+      if (err) {
+        console.log('An error occured while writing JSON Object to File.');
+        return console.log(err);
+      }
+
+      console.log('CSS file has been saved.');
+    });
 
     fs.writeFile('tokens.json', jsonStringPrettier, 'utf-8', function (err) {
       if (err) {

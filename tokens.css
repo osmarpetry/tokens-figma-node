@@ -1,0 +1,5 @@
+body {
+   --grids-desktop-count: 12;
+   --grids-desktop-gutter: 40px;
+   --grids-desktop-offset: 100px;
+}

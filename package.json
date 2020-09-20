@@ -7,6 +7,10 @@
     "start": "nodemon index.js"
   },
   "devDependencies": {
+    "json-to-css": "0.1.0",
+    "json-to-css-variables": "1.0.0",
+    "node-sass": "4.14.1",
+    "node-sass-json-importer": "4.3.0",
     "nodemon": "2.0.4"
   }
 }
