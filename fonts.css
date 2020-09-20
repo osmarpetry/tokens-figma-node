@@ -1,7 +1,7 @@
-body {
+:root {
    --fonts-link-spacing-value: "normal";
    --fonts-link-spacing-type: "typography";
-   --fonts-caption-small-spacing-value: "2.4000000000000004px";
+   --fonts-caption-small-spacing-value: 2.4000000000000004px;
    --fonts-caption-small-spacing-type: "typography";
    --fonts-h1-mobile-spacing-value: "normal";
    --fonts-h1-mobile-spacing-type: "typography";

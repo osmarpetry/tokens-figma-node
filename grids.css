@@ -1,8 +1,8 @@
-body {
-   --grids-desktop-offset-value: "100px";
+:root {
+   --grids-desktop-offset-value: 100px;
    --grids-desktop-offset-type: "grids";
-   --grids-tablet-offset-value: "60px";
+   --grids-tablet-offset-value: 60px;
    --grids-tablet-offset-type: "grids";
-   --grids-mobile-offset-value: "20px";
+   --grids-mobile-offset-value: 20px;
    --grids-mobile-offset-type: "grids";
 }

@@ -1,12 +1,12 @@
-body {
-   --spacers-M-value: "8px";
+:root {
+   --spacers-M-value: 8px;
    --spacers-M-type: "spacers";
-   --spacers-S-value: "4px";
+   --spacers-S-value: 4px;
    --spacers-S-type: "spacers";
-   --spacers-L-value: "16px";
+   --spacers-L-value: 16px;
    --spacers-L-type: "spacers";
-   --spacers-XL-value: "24px";
+   --spacers-XL-value: 24px;
    --spacers-XL-type: "spacers";
-   --spacers-XXL-value: "32px";
+   --spacers-XXL-value: 32px;
    --spacers-XXL-type: "spacers";
 }

@@ -1,20 +1,20 @@
-body {
-   --colors-lemo-value: "rgba(252.00000017881393, 255, 234.00000125169754, 1)";
+:root {
+   --colors-lemo-value: rgba(252.00000017881393, 255, 234.00000125169754, 1);
    --colors-lemo-type: "color";
-   --colors-blank-value: "rgba(255, 255, 255, 1)";
+   --colors-blank-value: rgba(255, 255, 255, 1);
    --colors-blank-type: "color";
-   --colors-medium-lemo-value: "rgba(236.87143117189407, 239.4104853272438, 221.63765341043472, 1)";
+   --colors-medium-lemo-value: rgba(236.87143117189407, 239.4104853272438, 221.63765341043472, 1);
    --colors-medium-lemo-type: "color";
-   --colors-dark-lemo-value: "rgba(140.62514930963516, 141.41921550035477, 135.86125373840332, 1)";
+   --colors-dark-lemo-value: rgba(140.62514930963516, 141.41921550035477, 135.86125373840332, 1);
    --colors-dark-lemo-type: "color";
-   --colors-limo-value: "rgba(238.1378272175789, 255, 136.96506410837173, 1)";
+   --colors-limo-value: rgba(238.1378272175789, 255, 136.96506410837173, 1);
    --colors-limo-type: "color";
-   --colors-coral-value: "rgba(255, 136.96506410837173, 136.96506410837173, 1)";
+   --colors-coral-value: rgba(255, 136.96506410837173, 136.96506410837173, 1);
    --colors-coral-type: "color";
-   --colors-plastic-grass-value: "rgba(73.54207456111908, 221.59387975931168, 168.29527974128723, 1)";
+   --colors-plastic-grass-value: rgba(73.54207456111908, 221.59387975931168, 168.29527974128723, 1);
    --colors-plastic-grass-type: "color";
-   --colors-supernova-value: "rgba(127.58079886436462, 91.0280142724514, 231.6157203912735, 1)";
+   --colors-supernova-value: rgba(127.58079886436462, 91.0280142724514, 231.6157203912735, 1);
    --colors-supernova-type: "color";
-   --colors-puma-value: "rgba(48.99563491344452, 48.99563491344452, 48.99563491344452, 1)";
+   --colors-puma-value: rgba(48.99563491344452, 48.99563491344452, 48.99563491344452, 1);
    --colors-puma-type: "color";
 }

@@ -13,9 +13,9 @@ const fonts = (fontName, fonts) => {
           variableName[0] +
           '-' +
           variableObject[0] +
-          '-value: "' +
-          variableObject[1].value +
-          '";';
+          '-value: ' +
+          checkIfCanHaveQuotes(variableObject[1].value) +
+          ';';
 
         const type =
           fontName +
@@ -35,9 +35,9 @@ const fonts = (fontName, fonts) => {
           variableName[0] +
           '-' +
           variableObject[0] +
-          ': "' +
-          variableObject[1] +
-          '";';
+          ': ' +
+          checkIfCanHaveQuotes(variableObject[1]) +
+          ';';
 
         fontsReturn.push(value);
       }
@@ -46,6 +46,16 @@ const fonts = (fontName, fonts) => {
 
   return fontsReturn;
 };
+
+const checkIfCanHaveQuotes = (kkk) => {
+  const cantHave = parseFloat(kkk) > 0 || kkk.substring(0,1) === 'r'
+
+  if(cantHave) {
+    return kkk
+  } else {
+    return '"' + kkk + '"'
+  }
+}
 
 const parser = (variableName) => {
   return Object.entries(variableName[1]).map((b) => {
@@ -56,7 +66,7 @@ const parser = (variableName) => {
       } else {
         if (variableSubName.value) {
           variables[1] =
-            variables[0] + '-value: "' + variableSubName.value + '";';
+            variables[0] + '-value: ' + checkIfCanHaveQuotes(variableSubName.value) + ';';
           variables[2] =
             variables[0] + '-type: "' + variableSubName.type + '";';
         } else {
@@ -81,7 +91,7 @@ Object.entries(obj.token).map((variableName) => {
   fs.unlinkSync(fileName);
   var stream = fs.createWriteStream(fileName);
   stream.once('open', function (fd) {
-    stream.write('body {' + '\n');
+    stream.write(':root {' + '\n');
     const pa = parser(variableName);
     pa.map(p => {
       p.map(m => {
