@@ -1,16 +1,9 @@
 :root {
    --fonts-link-spacing-value: "normal";
-   --fonts-link-spacing-type: "typography";
    --fonts-caption-small-spacing-value: 2.4000000000000004px;
-   --fonts-caption-small-spacing-type: "typography";
    --fonts-h1-mobile-spacing-value: "normal";
-   --fonts-h1-mobile-spacing-type: "typography";
    --fonts-h2-tablet-spacing-value: "normal";
-   --fonts-h2-tablet-spacing-type: "typography";
    --fonts-h3-tablet-spacing-value: "normal";
-   --fonts-h3-tablet-spacing-type: "typography";
-   --fonts-h4-mobile-spacing-value: "normal";
-   --fonts-h4-mobile-spacing-type: "typography";
-   --fonts-content-mobile-spacing-value: "normal";
-   --fonts-content-mobile-spacing-type: "typography";
+   --fonts-h4-mobile-lineheight-value: 120%;
+   --fonts-content-mobile-lineheight-value: 150%;
 }
