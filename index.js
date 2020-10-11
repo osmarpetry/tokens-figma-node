@@ -203,12 +203,16 @@ function getFontStyles(stylesArtboard) {
 
 (async () => {
   await getStylesArtboard(
-    '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
-    'JNIu97dR9CPt6kTg3grNFc7n'
+    'figmaApiKey',
+    'figmaId'
   ).then((val) => {
     const jsonStringPrettier = JSON.stringify(val, null, 2);
+    const dir = 'output'
 
-    fs.writeFile('tokens.json', jsonStringPrettier, 'utf-8', function (err) {
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+  }
+    fs.writeFile(`${dir}/tokens.json`, jsonStringPrettier, 'utf-8', function (err) {
       if (err) {
         console.log('An error occured while writing JSON Object to File.');
         return console.log(err);
