@@ -203,8 +203,8 @@ function getFontStyles(stylesArtboard) {
 
 (async () => {
   await getStylesArtboard(
-    '63485-1bf531de-0a83-49d0-819a-fbaa911a4a37',
-    'JNIu97dR9CPt6kTg3grNFc7n'
+    'figmaApiKey',
+    'figmaId'
   ).then((val) => {
     const jsonStringPrettier = JSON.stringify(val, null, 2);
 
