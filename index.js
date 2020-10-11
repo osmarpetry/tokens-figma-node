@@ -207,8 +207,12 @@ function getFontStyles(stylesArtboard) {
     'figmaId'
   ).then((val) => {
     const jsonStringPrettier = JSON.stringify(val, null, 2);
+    const dir = 'output'
 
-    fs.writeFile('tokens.json', jsonStringPrettier, 'utf-8', function (err) {
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+  }
+    fs.writeFile(`${dir}/tokens.json`, jsonStringPrettier, 'utf-8', function (err) {
       if (err) {
         console.log('An error occured while writing JSON Object to File.');
         return console.log(err);
