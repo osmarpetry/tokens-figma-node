@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-var tokensJson = JSON.parse(fs.readFileSync('tokens.json', 'utf8'));
-
 const fontsVariables = (fontName, fonts) => {
   const fontsReturn = [];
   Object.entries(fonts).map((variableName) => {
@@ -77,19 +75,25 @@ const parser = (variableName) => {
   });
 };
 
-Object.entries(tokensJson.token).map((variableName) => {
-  const fileName = variableName[0] + '.css';
-  fs.openSync(fileName, 'w');
-  fs.unlinkSync(fileName);
-  var stream = fs.createWriteStream(fileName);
-  stream.once('open', function (fd) {
-    stream.write(':root {' + '\n');
-    const variableFileCSS = parser(variableName);
-    variableFileCSS.map((p) => {
-      p.map((m) => {
-        stream.write(m);
+const extractCSS = (cssOutputDir) => {
+  const tokensJson = JSON.parse(fs.readFileSync(`${cssOutputDir}/tokens.json`, 'utf8'));
+
+  Object.entries(tokensJson.token).map((variableName) => {
+    const fileName = `${cssOutputDir}/${variableName[0]}.css`;
+    fs.openSync(fileName, 'w');
+    fs.unlinkSync(fileName);
+    var stream = fs.createWriteStream(fileName);
+    stream.once('open', function (fd) {
+      stream.write(':root {' + '\n');
+      const variableFileCSS = parser(variableName);
+      variableFileCSS.map((p) => {
+        p.map((m) => {
+          stream.write(m);
+        });
       });
+      stream.write('}');
     });
-    stream.write('}');
   });
-});
+};
+
+module.exports = extractCSS;
