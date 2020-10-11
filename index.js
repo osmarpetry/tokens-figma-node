@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
+const extractCSS = require('./json-to-css');
 
 async function getStylesArtboard(figmaApiKey, figmaId) {
   const result = await fetch('https://api.figma.com/v1/files/' + figmaId, {
@@ -201,24 +202,33 @@ function getFontStyles(stylesArtboard) {
   return fontStyles;
 }
 
-(async () => {
-  await getStylesArtboard(
-    'figmaApiKey',
-    'figmaId'
-  ).then((val) => {
-    const jsonStringPrettier = JSON.stringify(val, null, 2);
-    const dir = 'output'
+const parseFigmaFile = async (figmaApiKey, figmaId, cssOutputDir) => {
+  const val = await getStylesArtboard(figmaApiKey, figmaId);
+  const jsonStringPrettier = JSON.stringify(val, null, 2);
 
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir);
+  if (!fs.existsSync(cssOutputDir)){
+    fs.mkdirSync(cssOutputDir);
   }
-    fs.writeFile(`${dir}/tokens.json`, jsonStringPrettier, 'utf-8', function (err) {
-      if (err) {
-        console.log('An error occured while writing JSON Object to File.');
-        return console.log(err);
-      }
+  fs.writeFileSync(`${cssOutputDir}/tokens.json`, jsonStringPrettier, 'utf-8', function (err) {
+    if (err) {
+      console.log('An error occured while writing JSON Object to File.');
+      return console.log(err);
+    }
 
-      console.log('JSON file has been saved.');
-    });
+    console.log('JSON file has been saved.');
   });
-})();
+}
+
+const main = async () => {
+  const args = process.argv.slice(2);
+  if (args.length !== 3) {
+    console.error('Missing required arguments');
+    console.error('Usage: npm run parse [figmaApiKey] [figmaId] [cssOutputDir]');
+    process.exit(1);
+  } 
+  const [figmaApiKey, figmaId, cssOutputDir] = args;
+  await parseFigmaFile(figmaApiKey, figmaId, cssOutputDir);
+  extractCSS(cssOutputDir);
+};
+
+main();
