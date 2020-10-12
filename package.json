@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "parse": "node index.js",
+    "parse": "node App.js",
     "start": "nodemon index.js"
   },
   "devDependencies": {
@@ -15,6 +15,6 @@
     "nodemon": "2.0.4"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
   }
 }
