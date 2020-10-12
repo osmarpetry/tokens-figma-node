@@ -54,7 +54,7 @@ class FigmaParser {
           .filterObjectChildrenByName(this.stylesArtboard, 'grids')
           .then((gridsArtboard) => {
             gridsArtboard.map((item) => {
-              if (item.layoutGrids) {
+              if (item.name && item.layoutGrids) {
                 Object.assign(grids, {
                   [item.name]: {
                     count: {
@@ -91,7 +91,7 @@ class FigmaParser {
           .filterObjectChildrenByName(this.stylesArtboard, 'spacers')
           .then((spacersArtboard) => {
             spacersArtboard.map((item) => {
-              if (item.absoluteBoundingBox) {
+              if (item.name && item.absoluteBoundingBox) {
                 Object.assign(spacers, {
                   [item.name]: {
                     value: `${item.absoluteBoundingBox.height}px`,
@@ -122,7 +122,7 @@ class FigmaParser {
                 return item.fills[0].color[obj] * 255; 
               }
           
-              if (item.fills) {
+              if (item.name && item.fills) {
                 Object.assign(palette, {
                   [item.name]: {
                     value: `rgba(${rbaObj('r')}, ${rbaObj('g')}, ${rbaObj('b')}, ${item.fills[0].color.a})`,
@@ -154,7 +154,7 @@ class FigmaParser {
           
                 // get all sub fonts
                 fontItem.children.map((subFontItem) => {
-                  if (subFontItem.name) {
+                  if (subFontItem.name && subFontItem.style) {
                     // merge multiple subfonts objects into one
                     Object.assign(subFonts, {
                       [subFontItem.name]: {
@@ -191,7 +191,7 @@ class FigmaParser {
                 };
           
                 Object.assign(fontStyles, fontObj);
-              } else if (fontItem.name) {
+              } else if (fontItem.name && fontItem.style) {
                 Object.assign(fontStyles, {
                   [fontItem.name]: {
                     family: {
