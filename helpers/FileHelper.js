@@ -24,10 +24,6 @@ class FileHelper {
     this.checkDirectory(directory);
 
     const streamPath = `${directory}/${filename}`;
-
-    // fs.openSync(streamPath, 'w');
-    // fs.unlinkSync(streamPath);
-
     let stream = fs.createWriteStream(streamPath);
 
     return stream;

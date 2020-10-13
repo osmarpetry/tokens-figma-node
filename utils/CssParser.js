@@ -1,5 +1,4 @@
 const FileHelper = require('../helpers/FileHelper');
-const stringInject = require('stringinject');
 
 class CssParser {
   constructor() {}
@@ -7,22 +6,21 @@ class CssParser {
   exportToDirectory(directory, tokens) {
     const self = this;
 
+    console.log(tokens);
     Object.entries(tokens).map((variableName) => {
-      const cssFilename = variableName[0] + '.css';
+      const filename = variableName[0] + '.css';
   
-      let stream = new FileHelper().streamToFileDirectory(directory, cssFilename);
+      let stream = new FileHelper().streamToFileDirectory(directory, filename);
   
       stream.once('open', function (fd) {
         stream.write(':root {' + '\n');
-  
-        if (variableName.keys.length > 0) {
-          const variableFileCSS = self.parse(variableName);
-          variableFileCSS.map((p) => {
-            p.map((m) => {
-              stream.write(m);
-            });
+
+        const variableMapping = self.parse(variableName);
+        variableMapping.map((variables) => {
+          variables.map((line) => {
+            stream.write(line);
           });
-        }
+        });
   
         stream.write('}');  
       });

@@ -2,6 +2,7 @@ const FigmaParser = require('./utils/FigmaParser');
 const CssParser = require('./utils/CssParser');
 const FileHelper = require('./helpers/FileHelper');
 
+
 class Main {
   constructor() {}
 
@@ -19,10 +20,9 @@ class Main {
     await figma.parse();
 
     const filename = 'tokens.json';
-    new FileHelper().saveFileToDirectory(outputDirectory, filename, JSON.stringify(figma.getBaseTokens(), null, 2));
-
-    let tokensSource = figma.getBaseTokens();
-    new CssParser().exportToDirectory(outputDirectory, tokensSource.token);
+    let tokensSource = JSON.stringify(figma.getBaseTokens(), null, 2);
+    new FileHelper().saveFileToDirectory(outputDirectory, filename, tokensSource);
+    new CssParser().exportToDirectory(outputDirectory, JSON.parse(tokensSource).token);
   }
 }
 
