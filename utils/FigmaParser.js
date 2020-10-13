@@ -222,7 +222,7 @@ class FigmaParser {
               }
             });
 
-            Object.assign(selft.baseTokensJSON.token.fonts, fontStyles);  
+            Object.assign(self.baseTokensJSON.token.fonts, fontStyles);  
           })
           .catch((error) => {
             console.error('No font styles art board found.');

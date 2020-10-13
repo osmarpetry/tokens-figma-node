@@ -6,12 +6,10 @@ class CssParser {
   exportToDirectory(directory, tokens) {
     const self = this;
 
-    console.log(tokens);
     Object.entries(tokens).map((variableName) => {
       const filename = variableName[0] + '.css';
   
       let stream = new FileHelper().streamToFileDirectory(directory, filename);
-  
       stream.once('open', function (fd) {
         stream.write(':root {' + '\n');
 
